@@ -1,3 +1,4 @@
+import FeedbackItem from "./components/FeedbackItem";
 import Header from "./components/Header";
 
 const App = () => {
@@ -5,7 +6,7 @@ const App = () => {
     <>
       <Header />
       <div className='container'>
-        <h1>My App</h1>
+        <FeedbackItem />
       </div>
     </>
   )
