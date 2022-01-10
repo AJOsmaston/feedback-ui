@@ -7,7 +7,7 @@ const FeedbackData = [
   {
     id: 2,
     rating: 1,
-    text: "I'm not sure why, but this sucked. So much."
+    text: "I'm not sure why, but this really wasn't great."
   },
   {
     id: 3,
