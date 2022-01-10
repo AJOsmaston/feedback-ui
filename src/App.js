@@ -1,7 +1,4 @@
-import {v4 as uuidv4} from 'uuid'
 import Header from "./components/Header";
-import { useState } from "react";
-import FeedbackData from './data/FeedbackData'
 import FeedbackList from "./components/FeedbackList";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
@@ -12,13 +9,6 @@ import AboutIconLink from './components/AboutIconLink';
 
 
 const App = () => {
-  const [feedback, setFeedback] = useState(FeedbackData)
-
-  const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4()
-    setFeedback([newFeedback, ...feedback])
-  }
-
   return (
     <FeedbackProvider>
       <Router>
@@ -27,9 +17,9 @@ const App = () => {
           <Routes>
             <Route exact path='/' element={
               <>
-                <FeedbackForm handleAdd={addFeedback}/>
+                <FeedbackForm />
                 <FeedbackStats />
-                <FeedbackList  />
+                <FeedbackList />
               </>
             }>  
             </Route>
