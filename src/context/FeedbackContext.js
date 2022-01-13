@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import {v4 as uuidv4} from 'uuid'
+const proxy = `${process.env.REACT_APP_API_URL}`
 
 const FeedbackContext = createContext();
 
@@ -18,7 +19,7 @@ export const FeedbackProvider = ({children}) => {
 
   //fetch feedback
   const fetchFeedback = async () => {
-    const response = await fetch("/feedback")
+    const response = await fetch(`${proxy}/feedback`)
     const data = await response.json()
 
     setFeedback(data)
@@ -28,7 +29,7 @@ export const FeedbackProvider = ({children}) => {
   //to delete feedback
   const deleteFeedback = async (id) => {
     if(window.confirm('Are you sure you want to delete this?')) {
-      await fetch(`/feedback/${id}`, { method: "DELETE" })
+      await fetch(`${proxy}/feedback/${id}`, { method: "DELETE" })
 
       setFeedback(feedback.filter((item)=> item.id !== id))
     }
@@ -37,7 +38,7 @@ export const FeedbackProvider = ({children}) => {
   // to add feedback
   const addFeedback = async (newFeedback) => {
     newFeedback.id = uuidv4()
-    const response = await fetch("/feedback", {
+    const response = await fetch(`${proxy}/feedback`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -59,7 +60,7 @@ export const FeedbackProvider = ({children}) => {
 
   //update feedback item
   const updateFeedback = async (id, updatedItem) => {
-    const response = await fetch(`/feedback/${id}`, {
+    const response = await fetch(`${proxy}/feedback/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
